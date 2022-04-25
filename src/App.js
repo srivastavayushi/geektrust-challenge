@@ -1,8 +1,6 @@
-import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Landing from "./pages/Landing";
 
 function App() {
 	// Write new routes by adding a route tag underneath the home route by doing something like this:
@@ -11,8 +9,7 @@ function App() {
 		<div className="App">
 			<Router>
 				<Switch>
-					<Route exact path="/" component={Landing} />
-					<Route path="/home" component={Home} />
+					<Route path="/" component={Home} />
 				</Switch>
 			</Router>
 		</div>
