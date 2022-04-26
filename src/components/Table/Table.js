@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useState} from 'react';
 import { useTable ,useGlobalFilter,useFilters, useRowSelect,usePagination} from "react-table";
 import { Checkbox } from './Checkbox';
 
