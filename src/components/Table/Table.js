@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { useTable ,useGlobalFilter,useFilters, useRowSelect,usePagination} from "react-table";
 import { Checkbox } from './Checkbox';
 
@@ -14,7 +14,6 @@ const defaultColumn = {
 };
 
 export default function Table({data,columns,setData, updateMyData,skipPageReset}) {
-
     const [editableRowIndex, setEditableRowIndex] = useState(null);
 
     const { getTableProps, getTableBodyProps, headerGroups, page, nextPage, previousPage, canNextPage, canPreviousPage,
@@ -44,9 +43,9 @@ export default function Table({data,columns,setData, updateMyData,skipPageReset}
         hooks.visibleColumns.push(columns => [
           {
             id: 'selection',
-            Header: ({ getToggleAllRowsSelectedProps }) => (
+            Header: ({ getToggleAllPageRowsSelectedProps }) => (
               <div>
-                <Checkbox {...getToggleAllRowsSelectedProps()} />
+                <Checkbox {...getToggleAllPageRowsSelectedProps()} />
               </div>
             ),
             Cell: ({ row }) => (
@@ -59,21 +58,21 @@ export default function Table({data,columns,setData, updateMyData,skipPageReset}
           {
             Header: "Actions",
             accessor: "actions",
-            Cell: ({ row, setEditableRowIndex, editableRowIndex }) => (
+            Cell: ({ row, setEditableRowIndex, editableRowIndex,data }) => (
               <span className='flex flex-row items-center justify-start gap-2'>
                 <EditRow 
                     row={row} 
                     setEditableRowIndex={setEditableRowIndex} 
                     editableRowIndex={editableRowIndex}
                 />
-                <DeleteRow row={row} setData={setData}/>
+                <DeleteRow setData={setData} data={data} row={row}/>
               </span>
             )
             
           }
         ])
       });
-    const { globalFilter, pageIndex, pageSize } = state
+    const { globalFilter, pageIndex, pageSize } = state;
 
   return (
     <div className='max-w-6xl mx-auto'>
