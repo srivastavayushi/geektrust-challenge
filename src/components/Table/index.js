@@ -35,7 +35,7 @@ export default function Index() {
     }
 
   return (
-    <div>
+    <div className="w-full">
         <Table 
             data={data} 
             setData={setData}

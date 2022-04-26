@@ -5,7 +5,6 @@ export default function Delete({deleteItems, data, setData}) {
   const deleteItemsFunc = () =>{
     
       const temp = JSON.parse(JSON.stringify(data));
-
       const newArr = temp.filter(objFromTemp => {
       return !deleteItems.find(objFromDeleteItems => {
         return objFromTemp.id === objFromDeleteItems.original.id;
@@ -16,10 +15,11 @@ export default function Delete({deleteItems, data, setData}) {
     <>
    <button 
       onClick={()=>deleteItemsFunc()}
-      className='px-4 py-2 bg-green-400 m-4 border border-12 border-green-600'>
-     Delete
+      disabled={deleteItems.length <= 0}
+      className='px-4 py-2 bg-pink-700 m-4 rounded-full text-pink-100 font-bold'>
+     Delete Selected
    </button>
-  <pre>
+  {/* <pre>
       <code>
           {
               JSON.stringify(
@@ -30,7 +30,7 @@ export default function Delete({deleteItems, data, setData}) {
               2
           )}
       </code>  
-    </pre>
+    </pre> */}
     </>
    
   )

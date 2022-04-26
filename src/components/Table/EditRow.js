@@ -1,4 +1,5 @@
-import React from 'react'
+import React,{useState} from 'react'
+import { PencilAltIcon, SaveIcon } from '@heroicons/react/solid'
 
 export const EditableCell = ({
     value: initialValue,
@@ -8,7 +9,7 @@ export const EditableCell = ({
     editableRowIndex 
   }) => {
     // We need to keep and update the state of the cell normally
-    const [value, setValue] = React.useState(initialValue);
+    const [value, setValue] = useState(initialValue);
   
     const onChange = (e) => {
       setValue(e.target.value);
@@ -25,7 +26,7 @@ export const EditableCell = ({
     }, [initialValue]);
   
     return index === editableRowIndex ? (
-      <input value={value} onChange={onChange} onBlur={onBlur} />
+      <input value={value} onChange={onChange} onBlur={onBlur} className='px-1' />
     ) : (
       <p>{value}</p>
     );
@@ -42,15 +43,13 @@ export default function EditRow({row,editableRowIndex, setEditableRowIndex}) {
                     setEditableRowIndex(currentIndex);
                   } else {
                     setEditableRowIndex(null);
-                    const updatedRow = row.values;
-                    console.log("updated row values:");
-                    console.log(updatedRow);
-                    // call your updateRow API
+                    // const updatedRow = row.values;
+                    // console.log("updated row values:");
+                    // console.log(updatedRow);
                   }
                 }}
               >
-                {/* single action button supporting 2 modes */}
-                {editableRowIndex !== row.index ? "Edit" : "Save"}
+                {editableRowIndex !== row.index ? <PencilAltIcon className="h-6 w-6 text-gray-400"/> : <SaveIcon className="h-6 w-6 text-gray-700"/>}
         </button>
   )
 }

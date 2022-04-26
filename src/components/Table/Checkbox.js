@@ -11,7 +11,7 @@ export const Checkbox = forwardRef(
   
       return (
         <>
-          <input type="checkbox" ref={resolvedRef} {...rest} />
+          <input type="checkbox" className='w-5 h-5 rounded-full ml-2' ref={resolvedRef} {...rest} />
         </>
       )
     }
